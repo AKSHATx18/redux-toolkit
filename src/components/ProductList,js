@@ -1,0 +1,49 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cartSlice";
+
+const products = [
+  { id: 1, name: "Laptop", price: 60000 },
+  { id: 2, name: "Smartphone", price: 25000 },
+  { id: 3, name: "Headphones", price: 3000 },
+];
+
+function ProductList() {
+  const dispatch = useDispatch();
+
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h2>🛒 Products</h2>
+      {products.map((p) => (
+        <div
+          key={p.id}
+          style={{
+            border: "1px solid #ccc",
+            borderRadius: "10px",
+            width: "300px",
+            margin: "10px auto",
+            padding: "10px",
+          }}
+        >
+          <h3>{p.name}</h3>
+          <p>💰 Price: ₹{p.price}</p>
+          <button
+            onClick={() => dispatch(addToCart(p))}
+            style={{
+              backgroundColor: "#4CAF50",
+              color: "white",
+              padding: "8px 16px",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Add to Cart
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default ProductList;
